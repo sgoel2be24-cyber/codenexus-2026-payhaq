@@ -1,0 +1,1334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PayHaq — Round 1 — Team Update</title>
+<style>
+  :root{
+    --navy:#0B1F3A;
+    --ink:#14202E;
+    --muted:#5B6674;
+    --line:#D9E0E6;
+    --teal:#0E7C7B;
+    --teal-light:#E8F3F2;
+    --teal-line:#C6E2E0;
+    --amber:#D98A2B;
+    --amber-light:#FBF0DF;
+    --paper:#FBFAF7;
+    --white:#FFFFFF;
+  }
+  @page{size:A4;margin:0;}
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    background:#D8D8D8;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  .page{
+    width:210mm;height:297mm;position:relative;overflow:hidden;
+    background:var(--paper);page-break-after:always;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+  .page:last-child{page-break-after:auto;}
+  .pad{position:absolute;inset:0;padding:13mm 15mm 13mm;}
+  .hdr{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    border-bottom:1px solid var(--line);padding-bottom:2.2mm;
+  }
+  .brand{
+    font-family:"Avenir Next","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight:700;font-size:11px;letter-spacing:.19em;color:var(--navy);
+  }
+  .brand span{color:var(--teal);}
+  .hdr-right{
+    font-family:"SF Mono",Menlo,Monaco,monospace;font-size:6.4px;letter-spacing:.13em;
+    color:var(--muted);text-transform:uppercase;
+  }
+  .ftr{
+    position:absolute;left:15mm;right:15mm;bottom:6.5mm;
+    display:flex;justify-content:space-between;align-items:center;
+    border-top:1px solid var(--line);padding-top:2mm;
+    font-family:"SF Mono",Menlo,Monaco,monospace;font-size:6.2px;
+    letter-spacing:.09em;color:var(--muted);text-transform:uppercase;
+  }
+  .content{margin-top:7.5mm;}
+  .sec-no{
+    font-family:"SF Mono",Menlo,Monaco,monospace;font-size:6.8px;letter-spacing:.15em;
+    color:var(--teal);text-transform:uppercase;margin-bottom:1.5mm;
+  }
+  h1{
+    font-family:"Avenir Next","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:27px;line-height:1.03;letter-spacing:-.028em;font-weight:700;
+    color:var(--navy);margin:0 0 2.2mm;
+  }
+  .deck{
+    font-size:11.2px;line-height:1.42;color:var(--muted);
+    max-width:150mm;margin:0 0 4.5mm;
+  }
+  p{margin:0 0 2.8mm;font-size:9.1px;line-height:1.52;}
+  .small{font-size:8.1px;line-height:1.48;}
+  .tiny{font-size:7px;line-height:1.42;}
+  .mono{font-family:"SF Mono",Menlo,Monaco,monospace;}
+  .teal{color:var(--teal);}
+  .amber{color:var(--amber);}
+  .muted{color:var(--muted);}
+  .upper{text-transform:uppercase;letter-spacing:.09em;}
+  .two{display:grid;grid-template-columns:1.58fr 1fr;gap:7mm;}
+  .two-eq{display:grid;grid-template-columns:1fr 1fr;gap:6mm;}
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:4.5mm;}
+  .card{
+    background:var(--white);border:1px solid var(--line);border-radius:1.8mm;
+    padding:4mm;
+  }
+  .card.teal{background:var(--teal-light);border-color:var(--teal-line);}
+  .card.navy{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .card.amber{background:var(--amber-light);border-color:#EED9B8;}
+  .callout{
+    background:var(--teal-light);border-left:2.5px solid var(--teal);
+    padding:3.5mm 4mm;border-radius:0 1.5mm 1.5mm 0;
+  }
+  .callout.navy{background:var(--navy);border-left-color:var(--amber);color:#fff;}
+  .callout.amber{background:var(--amber-light);border-left-color:var(--amber);}
+  .kicker{
+    font-family:"SF Mono",Menlo,Monaco,monospace;font-size:6.4px;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--teal);margin-bottom:1.6mm;
+  }
+  .card.navy .kicker{color:#8FD3D1;}
+  .stat{
+    font-family:"Avenir Next","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:32px;line-height:.95;font-weight:700;letter-spacing:-.04em;color:var(--teal);
+  }
+  .stat-label{font-size:6.9px;line-height:1.4;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:1.4mm;}
+  table{width:100%;border-collapse:collapse;font-size:8.1px;line-height:1.38;}
+  th{
+    text-align:left;font-family:"SF Mono",Menlo,Monaco,monospace;font-size:6.1px;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;
+    padding:0 2mm 1.4mm 0;border-bottom:1px solid var(--ink);
+  }
+  td{padding:2mm 2mm 2mm 0;border-bottom:1px solid var(--line);vertical-align:top;}
+  td:first-child{font-weight:600;color:var(--navy);}
+  ul{margin:1.5mm 0 0 3.6mm;padding:0;}
+  li{font-size:8.3px;line-height:1.46;margin-bottom:1.3mm;}
+  .checklist{list-style:none;margin-left:0;}
+  .checklist li{position:relative;padding-left:4mm;margin-bottom:1.7mm;}
+  .checklist li::before{
+    content:"";position:absolute;left:0;top:1.1mm;width:1.6mm;height:1.6mm;
+    border-radius:50%;background:var(--teal);
+  }
+  .crosslist{list-style:none;margin-left:0;}
+  .crosslist li{position:relative;padding-left:4mm;margin-bottom:1.7mm;}
+  .crosslist li::before{
+    content:"×";position:absolute;left:0;top:-.2mm;color:var(--amber);
+    font-weight:700;font-size:9px;
+  }
+  .rule{height:1px;background:var(--line);margin:3mm 0;}
+  .label{
+    font-family:"SF Mono",Menlo,Monaco,monospace;font-size:6.2px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2mm;
+  }
+  .pill{
+    display:inline-block;font-family:"SF Mono",Menlo,Monaco,monospace;
+    font-size:6px;letter-spacing:.08em;text-transform:uppercase;
+    padding:1mm 1.8mm;border:1px solid var(--teal-line);border-radius:3mm;
+    color:var(--teal);background:#fff;
+  }
+  .pill.amber{border-color:#EED9B8;color:#9A5A10;background:var(--amber-light);}
+  .quote{
+    font-family:Georgia,"Times New Roman",serif;font-size:12px;line-height:1.4;
+    font-style:italic;color:var(--navy);
+  }
+  .num-badge{
+    width:6.5mm;height:6.5mm;border-radius:50%;background:var(--teal);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-family:"SF Mono",Menlo,Monaco,monospace;font-size:7px;
+  }
+
+  /* ---------- COVER ---------- */
+  .cover{background:var(--navy);color:#fff;}
+  .cover::before{
+    content:"";position:absolute;inset:0;
+    background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+    background-size:12mm 12mm;
+  }
+  .cover::after{
+    content:"";position:absolute;right:-55mm;top:-55mm;width:175mm;height:175mm;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(14,124,123,.45),rgba(14,124,123,0) 66%);
+  }
+  .cover > *{position:relative;z-index:1;}
+  .cover-top{
+    position:absolute;top:14mm;left:16mm;right:16mm;
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:"SF Mono",Menlo,Monaco,monospace;font-size:6.6px;
+    letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.72);
+    border-bottom:1px solid rgba(255,255,255,.16);padding-bottom:3mm;
+  }
+  .cover-top .dot{color:var(--amber);margin:0 2mm;}
+  .cover-main{position:absolute;left:16mm;top:53mm;width:120mm;}
+  .cover-kicker{
+    font-family:"SF Mono",Menlo,Monaco,monospace;font-size:7px;letter-spacing:.16em;
+    text-transform:uppercase;color:#8FD3D1;margin-bottom:5mm;
+  }
+  .cover-title{
+    font-family:"Avenir Next","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:88px;line-height:.85;letter-spacing:-.055em;font-weight:700;
+    margin:0 0 7mm;color:#fff;
+  }
+  .cover-title span{color:var(--amber);}
+  .cover-tag{
+    font-family:"Avenir Next","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:21px;line-height:1.15;letter-spacing:-.02em;font-weight:600;
+    color:#fff;margin:0 0 4.5mm;
+  }
+  .cover-sub{
+    font-size:10.5px;line-height:1.55;color:rgba(255,255,255,.76);
+    max-width:96mm;margin:0;
+  }
+  .cover-stats{
+    position:absolute;left:16mm;top:158mm;width:120mm;
+    display:grid;grid-template-columns:repeat(3,1fr);gap:6mm;
+    border-top:1px solid rgba(255,255,255,.18);padding-top:4mm;
+  }
+  .cover-stat b{
+    display:block;font-family:"Avenir Next","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:18px;line-height:1;letter-spacing:-.02em;color:#fff;margin-bottom:1.6mm;
+  }
+  .cover-stat span{display:block;font-size:7.2px;line-height:1.4;color:rgba(255,255,255,.55);}
+  .loop{
+    position:absolute;right:16mm;top:55mm;width:58mm;
+    border-left:1px solid rgba(255,255,255,.18);padding-left:6mm;
+  }
+  .loop-title{
+    font-family:"SF Mono",Menlo,Monaco,monospace;font-size:6.2px;
+    letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);
+    margin-bottom:5mm;
+  }
+  .loop-step{display:flex;gap:4mm;margin-bottom:6.5mm;position:relative;}
+  .loop-step::before{
+    content:"";position:absolute;left:-7.1mm;top:1.6mm;width:2mm;height:2mm;
+    border-radius:50%;background:var(--amber);
+  }
+  .loop-step .n{
+    font-family:"SF Mono",Menlo,Monaco,monospace;font-size:7px;
+    color:#8FD3D1;min-width:6mm;padding-top:.4mm;
+  }
+  .loop-step b{display:block;font-size:11px;letter-spacing:-.01em;margin-bottom:.8mm;}
+  .loop-step small{display:block;font-size:7.4px;line-height:1.4;color:rgba(255,255,255,.58);}
+  .cover-bottom{
+    position:absolute;left:16mm;right:16mm;bottom:15mm;
+    display:grid;grid-template-columns:1.1fr 1.2fr 1.5fr .8fr;gap:5mm;
+    border-top:1px solid rgba(255,255,255,.18);padding-top:4mm;
+  }
+  .cover-bottom .label{color:rgba(255,255,255,.45);margin-bottom:1.4mm;}
+  .cover-bottom .val{font-size:8.6px;line-height:1.35;color:#fff;}
+  .cover-bottom .val.muted{color:rgba(255,255,255,.7);}
+
+  .takeaway{
+    position:absolute;left:15mm;right:15mm;bottom:17mm;
+    border-top:1px solid var(--line);padding-top:3mm;
+    display:flex;align-items:baseline;justify-content:space-between;gap:6mm;
+  }
+  .takeaway .k{
+    font-family:"SF Mono",Menlo,Monaco,monospace;font-size:6px;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap;
+  }
+  .takeaway .q{
+    font-family:Georgia,"Times New Roman",serif;font-size:11px;font-style:italic;
+    color:var(--navy);text-align:right;
+  }
+  .clock{
+    display:grid;grid-template-columns:repeat(5,1fr);gap:4mm;
+    border-top:1px solid var(--line);padding-top:3.5mm;margin-top:1.5mm;
+  }
+  .clock-step{position:relative;padding-top:2.5mm;}
+  .clock-step::before{
+    content:"";position:absolute;left:0;top:-4.2mm;width:2.2mm;height:2.2mm;
+    border-radius:50%;background:#fff;border:1.5px solid var(--teal);
+  }
+  .clock-step.active::before{background:var(--teal);}
+  .clock-step .d{
+    font-family:"SF Mono",Menlo,Monaco,monospace;font-size:6.2px;
+    letter-spacing:.1em;color:var(--teal);margin-bottom:1.4mm;
+  }
+  .clock-step b{display:block;font-size:8.6px;line-height:1.25;color:var(--navy);margin-bottom:1.2mm;}
+  .clock-step span{display:block;font-size:7.4px;line-height:1.42;color:var(--muted);}
+
+  /* ---------- PAGE 5 FLOW ---------- */
+  .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:3.2mm;}
+  .stage{
+    position:relative;background:#fff;border:1px solid var(--line);
+    border-top:2.4px solid var(--teal);padding:3.2mm;min-height:57mm;
+  }
+  .stage .n{
+    font-family:"SF Mono",Menlo,Monaco,monospace;font-size:7px;
+    color:var(--teal);margin-bottom:1.6mm;
+  }
+  .stage h3{
+    font-family:"Avenir Next","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:8.6px;line-height:1.15;letter-spacing:-.01em;margin:0 0 2mm;color:var(--navy);
+  }
+  .stage p{font-size:7.1px;line-height:1.42;margin:0 0 2mm;color:var(--muted);}
+  .stage ul{margin:0 0 0 3mm;}
+  .stage li{font-size:6.9px;line-height:1.38;margin-bottom:.9mm;}
+  .stage .tag{
+    position:absolute;left:3.2mm;bottom:2.5mm;
+    font-family:"SF Mono",Menlo,Monaco,monospace;font-size:5.8px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--teal);
+  }
+  .stage .tag.human{color:var(--amber);}
+  .stage:not(:last-child)::after{
+    content:"›";position:absolute;right:-2.5mm;top:42%;color:var(--teal);
+    font-size:12px;font-weight:700;z-index:2;
+  }
+
+  /* ---------- PAGE 6 WIREFRAME ---------- */
+  .wire{
+    background:#fff;border:1px solid var(--line);border-radius:1.8mm;overflow:hidden;
+    height:68mm;display:grid;grid-template-columns:33mm 1fr;
+  }
+  .wire-side{background:var(--navy);color:#fff;padding:3mm 2.8mm;}
+  .wire-logo{
+    font-family:"Avenir Next","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight:700;font-size:9px;letter-spacing:.08em;margin-bottom:4mm;
+  }
+  .wire-logo span{color:var(--amber);}
+  .wire-nav{font-size:5.8px;line-height:1.4;color:rgba(255,255,255,.62);}
+  .wire-nav div{padding:1.4mm 1.6mm;border-radius:1mm;margin-bottom:.6mm;}
+  .wire-nav .on{background:rgba(255,255,255,.12);color:#fff;}
+  .wire-main{padding:2.6mm;background:#F3F5F7;}
+  .wire-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:2.2mm;}
+  .wire-title{font-size:7px;font-weight:700;color:var(--navy);}
+  .wire-meta{font-family:"SF Mono",Menlo,Monaco,monospace;font-size:5.4px;color:var(--muted);}
+  .wire-cols{display:grid;grid-template-columns:repeat(5,1fr);gap:1.8mm;}
+  .wire-col{
+    background:#fff;border:1px solid var(--line);border-radius:1mm;padding:1.6mm;min-height:48mm;
+  }
+  .wire-col .ch{
+    font-family:"SF Mono",Menlo,Monaco,monospace;font-size:5.2px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--muted);margin-bottom:1.6mm;
+    display:flex;justify-content:space-between;
+  }
+  .wire-card{
+    background:#fff;border:1px solid var(--line);border-left:2px solid var(--amber);
+    border-radius:.8mm;padding:1.4mm;margin-bottom:1.4mm;
+  }
+  .wire-card b{display:block;font-size:5.8px;line-height:1.2;color:var(--navy);margin-bottom:.7mm;}
+  .wire-card span{display:block;font-family:"SF Mono",Menlo,Monaco,monospace;font-size:5px;color:var(--muted);line-height:1.35;}
+  .wire-card .amt{color:var(--teal);font-weight:700;}
+  .wire-col.recovered{background:var(--teal-light);border-color:var(--teal-line);}
+
+  /* ---------- PAGE 9 PROFILES ---------- */
+  .profile{
+    background:#fff;border:1px solid var(--line);border-top:3px solid var(--teal);
+    padding:5mm;
+  }
+  .profile:nth-child(2){border-top-color:var(--amber);}
+  .profile-head{display:flex;align-items:center;gap:3.5mm;margin-bottom:3.5mm;}
+  .avatar{
+    width:11mm;height:11mm;border-radius:50%;background:var(--teal-light);
+    color:var(--teal);display:flex;align-items:center;justify-content:center;
+    font-family:"Avenir Next","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:12px;font-weight:700;letter-spacing:.02em;
+  }
+  .profile:nth-child(2) .avatar{background:var(--amber-light);color:#9A5A10;}
+  .profile h3{
+    font-family:"Avenir Next","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:14px;letter-spacing:-.01em;margin:0 0 1mm;color:var(--navy);
+  }
+  .profile .role{
+    font-family:"SF Mono",Menlo,Monaco,monospace;font-size:6.2px;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--teal);
+  }
+  .profile:nth-child(2) .role{color:#9A5A10;}
+  .profile p{font-size:8.4px;line-height:1.5;margin-bottom:2.4mm;}
+  .cert-box{
+    background:var(--navy);color:#fff;padding:4.5mm;border-radius:1.8mm;
+  }
+  .cert-box .label{color:rgba(255,255,255,.5);}
+  .cert-line{font-size:8.2px;line-height:1.5;color:rgba(255,255,255,.82);margin-bottom:2.4mm;}
+  .cert-line b{color:#fff;}
+  .cert-line:last-child{margin-bottom:0;}
+
+  @media screen{
+    .page{margin:12px auto;box-shadow:0 2px 16px rgba(0,0,0,.18);}
+    body.qa .page{display:none;margin:0 auto;}
+    body.qa .page:target{display:block;}
+  }
+  @media print{
+    body{background:none;}
+    .page{margin:0;box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+<script>
+  if (location.hash) {
+    document.body.classList.add('qa');
+    var id = location.hash.slice(1);
+    document.querySelectorAll('.page').forEach(function(p){
+      p.style.display = (p.id === id) ? 'block' : 'none';
+    });
+  }
+</script>
+
+<!-- ================= PAGE 1 — COVER ================= -->
+<section class="page cover" id="p1">
+  <div class="cover-top">
+    <div>CodeNexus India 2026 <span class="dot">/</span> Round 1 <span class="dot">/</span> Agentic AI</div>
+    <div>Team Update</div>
+  </div>
+
+  <div class="cover-main">
+    <div class="cover-kicker">The recovery desk for India's micro and small suppliers</div>
+    <h1 class="cover-title">Pay<span>Haq</span></h1>
+    <p class="cover-tag">The agent that gets MSMEs paid.</p>
+    <p class="cover-sub">Upload a ledger. PayHaq reconciles payments, finds invoices past the 45-day limit, computes statutory interest, audits the evidence, drafts the notice and Samadhaan claim, and follows through until cash arrives — with a human approving every send.</p>
+  </div>
+
+  <div class="cover-stats">
+    <div class="cover-stat"><b>45 days</b><span>the legal payment window</span></div>
+    <div class="cover-stat"><b>3×</b><span>the RBI bank rate, compounded</span></div>
+    <div class="cover-stat"><b>1 agent</b><span>from detection to recovery</span></div>
+  </div>
+
+  <div class="loop">
+    <div class="loop-title">The recovery loop</div>
+    <div class="loop-step"><div class="n">01</div><div><b>Detect</b><small>45-day legal trigger, not a generic aging bucket.</small></div></div>
+    <div class="loop-step"><div class="n">02</div><div><b>Prove</b><small>Invoice, PO, challan, e-way bill and bank credit in one evidence graph.</small></div></div>
+    <div class="loop-step"><div class="n">03</div><div><b>File</b><small>Cited demand notice and Samadhaan claim, approved by the owner.</small></div></div>
+    <div class="loop-step"><div class="n">04</div><div><b>Recover</b><small>Follow-ups, response tracking, escalation and settlement.</small></div></div>
+  </div>
+
+  <div class="cover-bottom">
+    <div><div class="label">Team</div><div class="val">Update</div></div>
+    <div><div class="label">Members</div><div class="val">Shikhar Goel<br>Ishpreet Singh</div></div>
+    <div><div class="label">Institution</div><div class="val muted">Thapar Institute of Engineering and Technology, Patiala</div></div>
+    <div><div class="label">Submission</div><div class="val muted">3 November 2026<br>Round 1 · The Plan</div></div>
+  </div>
+</section>
+
+<!-- ================= PAGE 2 — PROBLEM ================= -->
+<section class="page" id="p2">
+  <div class="pad">
+    <div class="hdr">
+      <div class="brand">PAY<span>HAQ</span></div>
+      <div class="hdr-right">CodeNexus India 2026 · Round 1 · Agentic AI</div>
+    </div>
+    <div class="content">
+      <div class="sec-no">01 / The problem</div>
+      <h1>Visibility without action.</h1>
+      <p class="deck">India gave micro and small suppliers a legal remedy for late payments. Most never use it.</p>
+
+      <div class="two">
+        <div>
+          <div class="two-eq" style="gap:6mm;margin-bottom:4.5mm;">
+            <div>
+              <div class="stat">45 days</div>
+              <div class="stat-label">The legal payment window for micro and small suppliers under Section 15 of the MSMED Act, 2006.</div>
+            </div>
+            <div>
+              <div class="stat">3×</div>
+              <div class="stat-label">The RBI bank rate, compounded monthly, that a delayed buyer owes under Section 16.</div>
+            </div>
+          </div>
+
+          <p>A supplier can prove the invoice, the delivery and the delay. What they lack is the time to reconcile payments, the evidence discipline to build a claim, and the legal support to file it. So the aging report stays a report.</p>
+
+          <div class="label" style="margin-top:4mm;">What it costs today</div>
+          <ul class="checklist">
+            <li>Working capital locked in receivables; payroll and supplier payments wait.</li>
+            <li>Statutory interest never claimed — the buyer gets an interest-free loan.</li>
+            <li>Invoices discounted at 2–4% a month to get cash sooner.</li>
+            <li>The relationship still strains, because the chase is manual and emotional.</li>
+          </ul>
+
+          <div class="label" style="margin-top:4mm;">Why existing tools stop short</div>
+          <table>
+            <tr><th>Tool</th><th>What it does</th><th>Where it stops</th></tr>
+            <tr><td>Tally / Zoho Books</td><td>Shows aging and reminders</td><td>No evidence audit, no legal claim, no filing</td></tr>
+            <tr><td>Lawyer</td><td>Sends a notice</td><td>₹10–25k upfront; slow for ₹2–5L claims</td></tr>
+            <tr><td>Collection agency</td><td>Chases the buyer</td><td>Commission, pressure tactics, relationship damage</td></tr>
+            <tr><td>MSME Samadhaan</td><td>Accepts a delayed-payment application</td><td>Drafting, evidence and reconciliation are manual</td></tr>
+            <tr><td style="color:var(--teal);">PayHaq</td><td>Executes the recovery playbook</td><td>Detection → evidence → notice → filing → follow-up</td></tr>
+          </table>
+
+          <div class="callout" style="margin-top:4.5mm;">
+            <div class="kicker">The problem statement</div>
+            <p style="margin:0;font-size:9.6px;line-height:1.5;color:var(--navy);"><b>Indian micro and small enterprises can legally demand payment within 45 days and compound interest for delays, but most lack the time, evidence discipline, and legal support to convert an overdue invoice into a recovery action.</b></p>
+          </div>
+        </div>
+
+        <div>
+          <div class="card" style="margin-bottom:4mm;">
+            <div class="kicker">Who holds the problem</div>
+            <ul class="checklist" style="margin-top:1mm;">
+              <li><b>Micro and small B2B suppliers</b> — 5–50 employees, ₹50L–₹5Cr turnover.</li>
+              <li><b>Owner-operators</b> selling to larger buyers on 60–120 day cycles.</li>
+              <li><b>CA / AR managers</b> handling 20–100 MSME clients.</li>
+              <li><b>Cluster associations</b> whose members face the same buyers and the same delays.</li>
+            </ul>
+            <div class="rule"></div>
+            <div class="tiny muted"><b>Early wedge:</b> precision manufacturing clusters in Ludhiana, Pune, Coimbatore and Rajkot — dense, document-heavy, and used to 60–120 day terms.</div>
+          </div>
+
+          <div class="card teal" style="margin-bottom:4mm;">
+            <div class="kicker">Scope discipline</div>
+            <div class="label" style="margin-bottom:1.4mm;">What we take on</div>
+            <ul style="margin-top:0;">
+              <li>B2B invoices from micro and small suppliers</li>
+              <li>45+ day delays and evidence gaps</li>
+              <li>Statutory interest, demand notice and Samadhaan claim</li>
+              <li>Follow-up, escalation and recovery tracking</li>
+            </ul>
+            <div class="label" style="margin:3mm 0 1.4mm;">What we do not</div>
+            <ul class="crosslist" style="margin-top:0;">
+              <li>Consumer debt or legal representation</li>
+              <li>Arbitration strategy or recovery from insolvent buyers</li>
+              <li>Lending, credit or invoice financing</li>
+            </ul>
+          </div>
+
+          <div class="tiny muted" style="line-height:1.5;">
+            Sources: MSMED Act, 2006, ss. 15, 16 and 18; MSME Samadhaan portal; RBI bank rate. Interest figures in this document are illustrative, not a promise of recovery.
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:7mm;">
+        <div class="label">The 45-day clock · what the law already provides</div>
+        <div class="clock">
+          <div class="clock-step"><div class="d">DAY 0</div><b>Invoice accepted</b><span>The supplier delivers goods or services; the 45-day clock starts.</span></div>
+          <div class="clock-step active"><div class="d">DAY 45</div><b>Payment due</b><span>The buyer must pay. No payment means the statutory remedy begins.</span></div>
+          <div class="clock-step active"><div class="d">DAY 46+</div><b>Interest accrues</b><span>Compound interest at 3× the RBI bank rate, compounded monthly.</span></div>
+          <div class="clock-step"><div class="d">NEXT</div><b>Samadhaan application</b><span>The supplier can file a delayed-payment application online.</span></div>
+          <div class="clock-step"><div class="d">IF UNPAID</div><b>Facilitation Council</b><span>The state MSEFC can conciliate and award interest and costs.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="takeaway"><div class="k">The takeaway</div><div class="q">“The remedy already exists. The execution layer does not.”</div></div>
+    <div class="ftr"><span>Team Update · Shikhar Goel &amp; Ishpreet Singh</span><span>02 / 09</span></div>
+  </div>
+</section>
+
+<!-- ================= PAGE 3 — USERS ================= -->
+<section class="page" id="p3">
+  <div class="pad">
+    <div class="hdr">
+      <div class="brand">PAY<span>HAQ</span></div>
+      <div class="hdr-right">CodeNexus India 2026 · Round 1 · Agentic AI</div>
+    </div>
+    <div class="content">
+      <div class="sec-no">02 / Users</div>
+      <h1>A finance team that does not exist.</h1>
+      <p class="deck">The owner is the finance team, the legal team and the sales team. Recovery is the work that never gets a slot.</p>
+
+      <div class="two" style="grid-template-columns:1.45fr 1fr;">
+        <div>
+          <div class="card" style="padding:5mm;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:3.5mm;">
+              <div>
+                <div class="kicker">Primary persona</div>
+                <h3 style="font-family:'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:18px;letter-spacing:-.02em;margin:0 0 1mm;color:var(--navy);">Rakesh, 38</h3>
+                <div class="small muted">Owner, precision components unit · Pune</div>
+              </div>
+              <div class="pill">Micro manufacturer</div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3mm;margin-bottom:4mm;">
+              <div><div class="label" style="margin-bottom:.8mm;">Team</div><div class="small"><b>22 employees</b></div></div>
+              <div><div class="label" style="margin-bottom:.8mm;">Revenue</div><div class="small"><b>₹3.2Cr / year</b></div></div>
+              <div><div class="label" style="margin-bottom:.8mm;">Buyers</div><div class="small"><b>6 active</b></div></div>
+              <div><div class="label" style="margin-bottom:.8mm;">Payment cycle</div><div class="small"><b>60–120 days</b></div></div>
+              <div><div class="label" style="margin-bottom:.8mm;">Overdue</div><div class="small"><b>₹38L</b></div></div>
+              <div><div class="label" style="margin-bottom:.8mm;">Finance / legal</div><div class="small"><b>None in-house</b></div></div>
+            </div>
+
+            <div class="rule"></div>
+            <div class="quote">“I know who owes me. I don't have the time to chase legally, and I can't afford to lose the buyer.”</div>
+          </div>
+
+          <div class="two-eq" style="margin-top:4.5mm;">
+            <div class="card amber">
+              <div class="kicker" style="color:#9A5A10;">What success looks like</div>
+              <p style="margin:0;font-size:8.6px;line-height:1.5;">Cash in the bank, not another report. A notice the buyer takes seriously, backed by evidence the owner already has.</p>
+            </div>
+            <div class="card">
+              <div class="kicker">Adoption wedge</div>
+              <p style="margin:0;font-size:8.6px;line-height:1.5;">Start with one cluster and one workflow: micro-manufacturers with 3–15 buyers and 20–100 open invoices.</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card" style="margin-bottom:4mm;">
+            <div class="kicker">Jobs to be done</div>
+            <ul class="checklist" style="margin-top:1mm;">
+              <li>Know exactly who owes what, and which invoices are legally actionable.</li>
+              <li>Preserve the buyer relationship while applying pressure.</li>
+              <li>Act before the leverage disappears.</li>
+              <li>Avoid upfront legal costs on a ₹2–5L claim.</li>
+              <li>Prove the claim with documents the buyer cannot dispute.</li>
+            </ul>
+          </div>
+
+          <div class="card teal">
+            <div class="kicker">Secondary persona</div>
+            <h3 style="font-family:'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;letter-spacing:-.01em;margin:0 0 1.2mm;color:var(--navy);">Meera, 34 — CA</h3>
+            <div class="small muted" style="margin-bottom:2.4mm;">60 MSME clients · Pune</div>
+            <p style="font-size:8.4px;line-height:1.5;margin:0;">Wants a repeatable recovery workflow, not another inbox. Cannot chase for every client, but sees advisory revenue in solving it. PayHaq gives her a portfolio view and a defensible process.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:5mm;">
+        <div class="label">A Monday in Rakesh's life</div>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:3mm;border-top:1px solid var(--line);padding-top:3mm;">
+          <div><div class="mono tiny teal" style="margin-bottom:1.2mm;">09:00</div><div class="tiny">Opens the aging report. Four buyers are past 60 days.</div></div>
+          <div><div class="mono tiny teal" style="margin-bottom:1.2mm;">11:00</div><div class="tiny">Calls the largest buyer. “Next month” again.</div></div>
+          <div><div class="mono tiny teal" style="margin-bottom:1.2mm;">14:00</div><div class="tiny">CA says GST and bookkeeping are in scope; recovery is not.</div></div>
+          <div><div class="mono tiny teal" style="margin-bottom:1.2mm;">16:00</div><div class="tiny">Lawyer quotes ₹25,000 upfront for one notice.</div></div>
+          <div><div class="mono tiny teal" style="margin-bottom:1.2mm;">18:00</div><div class="tiny">Promises himself he will “handle it next week.”</div></div>
+        </div>
+      </div>
+
+      <div style="margin-top:7mm;">
+        <div class="label">From jobs to product decisions</div>
+        <table>
+          <tr><th>What the owner needs</th><th>What PayHaq does</th><th>Where it lives</th></tr>
+          <tr><td>Know who owes what</td><td>Reconciled case queue ranked by value, age and evidence score</td><td>Reconciler + dashboard</td></tr>
+          <tr><td>Preserve the relationship</td><td>Tone control: relationship-preserving or firm; every send human-approved</td><td>Legal Drafter + approval gate</td></tr>
+          <tr><td>Act before leverage disappears</td><td>45-day detection, deadline tracking and next-best-action prompts</td><td>Tracker</td></tr>
+          <tr><td>Avoid upfront legal costs</td><td>A fixed workflow that produces the first notice without a lawyer retainer</td><td>PayHaq</td></tr>
+          <tr><td>Prove the claim</td><td>Evidence graph, missing-document flags and section-level citations</td><td>Evidence Auditor + legal RAG</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="takeaway"><div class="k">The takeaway</div><div class="q">“The buyer holds the leverage until the supplier has a process.”</div></div>
+    <div class="ftr"><span>Team Update · Shikhar Goel &amp; Ishpreet Singh</span><span>03 / 09</span></div>
+  </div>
+</section>
+
+<!-- ================= PAGE 4 — SOLUTION ================= -->
+<section class="page" id="p4">
+  <div class="pad">
+    <div class="hdr">
+      <div class="brand">PAY<span>HAQ</span></div>
+      <div class="hdr-right">CodeNexus India 2026 · Round 1 · Agentic AI</div>
+    </div>
+    <div class="content">
+      <div class="sec-no">03 / The solution</div>
+      <h1>An agent that executes recovery.</h1>
+      <p class="deck">PayHaq is the action layer between an aging report and a recovered invoice.</p>
+
+      <div class="callout" style="margin-bottom:4.5mm;">
+        <div class="kicker">One line</div>
+        <p style="margin:0;font-size:10.4px;line-height:1.5;color:var(--navy);"><b>Upload your ledger. PayHaq reconciles payments, finds invoices past 45 days, computes statutory interest, audits the evidence, drafts the notice and Samadhaan claim, files it, and follows up — with you approving every send.</b></p>
+      </div>
+
+      <div class="two" style="grid-template-columns:1.1fr 1fr;">
+        <div>
+          <div class="label">Why an agent is required</div>
+          <div class="two-eq" style="gap:3mm;">
+            <div class="card" style="padding:3.2mm;">
+              <div class="num-badge" style="margin-bottom:2mm;">01</div>
+              <b class="small" style="color:var(--navy);">Multi-step, multi-week</b>
+              <p class="tiny" style="margin:1mm 0 0;">Reconcile → audit → draft → file → track. A single prompt cannot own a workflow that spans weeks.</p>
+            </div>
+            <div class="card" style="padding:3.2mm;">
+              <div class="num-badge" style="margin-bottom:2mm;">02</div>
+              <b class="small" style="color:var(--navy);">Real tool use</b>
+              <p class="tiny" style="margin:1mm 0 0;">Ledger parser, OCR, interest calculator, legal retrieval, document generator and portal automation.</p>
+            </div>
+            <div class="card" style="padding:3.2mm;">
+              <div class="num-badge" style="margin-bottom:2mm;">03</div>
+              <b class="small" style="color:var(--navy);">Memory that matters</b>
+              <p class="tiny" style="margin:1mm 0 0;">Buyer history, past promises, correspondence and evidence status — remembered across cases.</p>
+            </div>
+            <div class="card" style="padding:3.2mm;">
+              <div class="num-badge" style="margin-bottom:2mm;">04</div>
+              <b class="small" style="color:var(--navy);">Human-in-the-loop</b>
+              <p class="tiny" style="margin:1mm 0 0;">Irreversible actions need approval. Every step is logged, reviewable and reversible before send.</p>
+            </div>
+          </div>
+
+          <div class="callout amber" style="margin-top:4.5mm;">
+            <div class="kicker" style="color:#9A5A10;">The original angle</div>
+            <p style="margin:0;font-size:8.6px;line-height:1.5;">Every claim carries an <b>evidence graph</b>. Each amount and each legal assertion is traceable to a document, a section of the MSMED Act, and a timestamp. The agent cannot send a notice it cannot prove.</p>
+          </div>
+        </div>
+
+        <div>
+          <div class="label">Before / after</div>
+          <table style="margin-bottom:4.5mm;">
+            <tr><th>Today</th><th>With PayHaq</th></tr>
+            <tr><td>Aging report</td><td>Actionable case queue</td></tr>
+            <tr><td>Manual calls</td><td>Agent-drafted, cited notice</td></tr>
+            <tr><td>Lawyer quote</td><td>12-minute packet</td></tr>
+            <tr><td>Weeks of delay</td><td>Same-day send</td></tr>
+            <tr><td>No evidence trail</td><td>Evidence score + audit log</td></tr>
+          </table>
+
+          <div class="label">Differentiation</div>
+          <table>
+            <tr><th>Player</th><th>What they own</th><th>What they miss</th></tr>
+            <tr><td>Tally / Zoho</td><td>Visibility</td><td>Action</td></tr>
+            <tr><td>Lawyer</td><td>Advice, notices</td><td>Cost, speed</td></tr>
+            <tr><td>Collection agency</td><td>Pressure</td><td>Relationship, transparency</td></tr>
+            <tr><td>Samadhaan</td><td>Filing window</td><td>Drafting engine</td></tr>
+            <tr><td style="color:var(--teal);">PayHaq</td><td>End-to-end execution</td><td>—</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div style="margin-top:7mm;">
+        <div class="label">Why now</div>
+        <div class="three">
+          <div class="card teal" style="padding:3.5mm;">
+            <div class="kicker">Formalisation</div>
+            <p class="tiny" style="margin:0;">Udyam registration gives a verifiable micro/small status — the trigger for the 45-day rule and the interest claim.</p>
+          </div>
+          <div class="card teal" style="padding:3.5mm;">
+            <div class="kicker">Digital evidence</div>
+            <p class="tiny" style="margin:0;">GST invoices, e-way bills and bank statements make the claim provable without a paper chase.</p>
+          </div>
+          <div class="card teal" style="padding:3.5mm;">
+            <div class="kicker">A filing route exists</div>
+            <p class="tiny" style="margin:0;">Samadhaan and state Facilitation Councils exist. The missing layer is drafting, evidence and follow-through.</p>
+          </div>
+        </div>
+        <div class="callout navy" style="margin-top:4mm;padding:3.2mm 4mm;">
+          <div class="kicker" style="color:#8FD3D1;">Product principles</div>
+          <p style="margin:0;font-size:10px;line-height:1.4;color:#fff;"><b>Evidence before action. Human before send. Cash before dashboards.</b></p>
+        </div>
+      </div>
+    </div>
+    <div class="takeaway"><div class="k">The takeaway</div><div class="q">“PayHaq turns a report into a recovery action.”</div></div>
+    <div class="ftr"><span>Team Update · Shikhar Goel &amp; Ishpreet Singh</span><span>04 / 09</span></div>
+  </div>
+</section>
+
+<!-- ================= PAGE 5 — WORKFLOW ================= -->
+<section class="page" id="p5">
+  <div class="pad">
+    <div class="hdr">
+      <div class="brand">PAY<span>HAQ</span></div>
+      <div class="hdr-right">CodeNexus India 2026 · Round 1 · Agentic AI</div>
+    </div>
+    <div class="content">
+      <div class="sec-no">04 / Product workflow</div>
+      <h1>From ledger to recovery.</h1>
+      <p class="deck">Nine steps, five agents, three human gates.</p>
+
+      <div class="flow">
+        <div class="stage">
+          <div class="n">01</div>
+          <h3>INGEST &amp; RECONCILE</h3>
+          <p>Meet the owner where the data already is.</p>
+          <ul>
+            <li>CSV / XLSX or Tally export</li>
+            <li>Match invoices to payments</li>
+            <li>Handle partials and credit notes</li>
+            <li>Flag ambiguous matches</li>
+          </ul>
+          <div class="tag">Agent · Reconciler</div>
+        </div>
+        <div class="stage">
+          <div class="n">02</div>
+          <h3>DETECT &amp; AUDIT</h3>
+          <p>Turn an aging bucket into a legal case.</p>
+          <ul>
+            <li>45+ days, micro/small only</li>
+            <li>PO, invoice, challan, e-way bill</li>
+            <li>Bank credit and correspondence</li>
+            <li>Evidence completeness score</li>
+          </ul>
+          <div class="tag">Agent · Evidence Auditor</div>
+        </div>
+        <div class="stage">
+          <div class="n">03</div>
+          <h3>QUANTIFY &amp; DRAFT</h3>
+          <p>Make the claim specific and defensible.</p>
+          <ul>
+            <li>Principal + statutory interest</li>
+            <li>3× RBI bank rate, monthly</li>
+            <li>Cited demand notice</li>
+            <li>Samadhaan claim statement</li>
+          </ul>
+          <div class="tag">Agent · Legal Drafter</div>
+        </div>
+        <div class="stage">
+          <div class="n">04</div>
+          <h3>APPROVE &amp; FILE</h3>
+          <p>The owner stays in control.</p>
+          <ul>
+            <li>Review every notice</li>
+            <li>Choose tone: preserve or firm</li>
+            <li>Send email / registered post</li>
+            <li>Prepare Samadhaan packet</li>
+          </ul>
+          <div class="tag human">Human gate · Approve</div>
+        </div>
+        <div class="stage">
+          <div class="n">05</div>
+          <h3>TRACK &amp; RECOVER</h3>
+          <p>Recovery is a follow-through game.</p>
+          <ul>
+            <li>Follow-up cadence</li>
+            <li>Classify buyer responses</li>
+            <li>Escalate to Facilitation Council</li>
+            <li>Track settlement and cash</li>
+          </ul>
+          <div class="tag">Agent · Tracker</div>
+        </div>
+      </div>
+
+      <div class="two" style="grid-template-columns:1.35fr 1fr;margin-top:4.5mm;">
+        <div class="card navy" style="padding:4.5mm;">
+          <div class="kicker" style="color:#8FD3D1;">Worked scenario</div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+              <h3 style="font-family:'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;margin:0 0 1mm;color:#fff;">Sharma Precision Components · Pune</h3>
+              <div class="tiny" style="color:rgba(255,255,255,.6);">A 214-row ledger, four buyers, no in-house finance team.</div>
+            </div>
+            <div class="pill" style="border-color:rgba(255,255,255,.25);color:#8FD3D1;background:transparent;">12 minutes</div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;margin-top:3.5mm;">
+            <div><div class="stat" style="color:#fff;font-size:22px;">₹38.4L</div><div class="tiny" style="color:rgba(255,255,255,.55);">principal across 9 overdue invoices</div></div>
+            <div><div class="stat" style="color:#fff;font-size:22px;">≈₹3.2L</div><div class="tiny" style="color:rgba(255,255,255,.55);">statutory interest, illustrative</div></div>
+            <div><div class="stat" style="color:#fff;font-size:22px;">4 + 1</div><div class="tiny" style="color:rgba(255,255,255,.55);">notices + Samadhaan claim drafted</div></div>
+          </div>
+          <p class="tiny" style="margin:3.5mm 0 0;color:rgba(255,255,255,.7);">Two missing delivery challans are flagged before drafting. The owner approves; the notices go out. The same work would have taken two days and a lawyer quote.</p>
+        </div>
+
+        <div>
+          <div class="label">Agent roles</div>
+          <table>
+            <tr><th>Agent</th><th>Input</th><th>Output</th></tr>
+            <tr><td>Reconciler</td><td>Ledger, bank statement</td><td>Matched invoices, exceptions</td></tr>
+            <tr><td>Evidence Auditor</td><td>Invoice, PO, challan, e-way bill</td><td>Completeness score, missing docs</td></tr>
+            <tr><td>Legal Drafter</td><td>Evidence pack, legal corpus</td><td>Cited notice + claim</td></tr>
+            <tr><td>Filing Agent</td><td>Approved packet</td><td>Sent notice / application</td></tr>
+            <tr><td>Tracker</td><td>Responses, deadlines</td><td>Next action, escalation</td></tr>
+          </table>
+          <div class="callout" style="margin-top:3.5mm;padding:2.8mm 3.2mm;">
+            <div class="kicker">Human gates</div>
+            <div class="tiny">Approve notice · Approve filing · Approve settlement. The agent never sends without a human yes.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:6mm;">
+        <div class="label">Two tones, same facts</div>
+        <div class="two-eq">
+          <div class="card" style="padding:3.5mm;">
+            <div class="kicker">Relationship-preserving</div>
+            <p class="tiny" style="margin:0 0 2mm;"><b>Subject:</b> Payment against Invoice #SP-1042</p>
+            <p class="tiny" style="margin:0;font-style:italic;color:var(--navy);">“We value the partnership and want to resolve this quickly. Our records show Invoice #SP-1042 for ₹4,80,000 is now 62 days past due. Could we agree a payment date this week? If there is a dispute, tell us what is missing and we will fix it.”</p>
+          </div>
+          <div class="card amber" style="padding:3.5mm;">
+            <div class="kicker" style="color:#9A5A10;">Firm</div>
+            <p class="tiny" style="margin:0 0 2mm;"><b>Subject:</b> Statutory demand — Invoice #SP-1042</p>
+            <p class="tiny" style="margin:0;font-style:italic;color:var(--navy);">“Despite follow-ups, Invoice #SP-1042 for ₹4,80,000 remains unpaid 62 days after acceptance. Under Sections 15 and 16 of the MSMED Act, 2006, interest at 3× the RBI bank rate is now accruing. We request payment within 15 days to avoid a Samadhaan reference.”</p>
+          </div>
+        </div>
+        <div class="tiny muted" style="margin-top:2.5mm;text-align:center;">Same evidence. Same claim. The owner chooses the pressure.</div>
+      </div>
+    </div>
+    <div class="takeaway"><div class="k">The takeaway</div><div class="q">“Every step is evidence. Every irreversible step is human.”</div></div>
+    <div class="ftr"><span>Team Update · Shikhar Goel &amp; Ishpreet Singh</span><span>05 / 09</span></div>
+  </div>
+</section>
+
+<!-- ================= PAGE 6 — FEATURES ================= -->
+<section class="page" id="p6">
+  <div class="pad">
+    <div class="hdr">
+      <div class="brand">PAY<span>HAQ</span></div>
+      <div class="hdr-right">CodeNexus India 2026 · Round 1 · Agentic AI</div>
+    </div>
+    <div class="content">
+      <div class="sec-no">05 / Features</div>
+      <h1>A narrow MVP that runs end-to-end.</h1>
+      <p class="deck">Round 2 proves the core workflow. Round 3 deepens it. Nothing is decorative.</p>
+
+      <div class="two" style="grid-template-columns:1.4fr 1fr;">
+        <div>
+          <div class="label">MVP · Round 2</div>
+          <table>
+            <tr><th>Feature</th><th>Why it matters</th><th>In the build</th></tr>
+            <tr><td>Ledger ingestion</td><td>Meets the owner where the data already is</td><td>CSV / XLSX + Tally export</td></tr>
+            <tr><td>Reconciliation</td><td>Partial payments and credit notes break naive claims</td><td>Deterministic matching + exceptions</td></tr>
+            <tr><td>45-day detection</td><td>The legal trigger, not a generic aging bucket</td><td>Micro/small filter + invoice age</td></tr>
+            <tr><td>Interest engine</td><td>The number that makes a claim credible</td><td>3× RBI bank rate, monthly compounding</td></tr>
+            <tr><td>Evidence audit</td><td>Missing documents are why claims fail</td><td>Checklist + completeness score</td></tr>
+            <tr><td>Notice + claim</td><td>The artifact the buyer and portal see</td><td>PDF templates + section citations</td></tr>
+            <tr><td>Dashboard + audit</td><td>Trust requires visibility and a trail</td><td>Pipeline, approvals, event log</td></tr>
+            <tr><td>Mock Samadhaan filing</td><td>End-to-end without portal risk</td><td>Downloadable packet</td></tr>
+          </table>
+        </div>
+
+        <div>
+          <div class="label">Round 3 · The three improvements</div>
+          <div class="card" style="padding:3mm;margin-bottom:2.5mm;">
+            <div style="display:flex;gap:2.5mm;align-items:flex-start;"><div class="num-badge" style="min-width:6.5mm;">1</div><div><b class="small" style="color:var(--navy);">Live Samadhaan filing</b><p class="tiny" style="margin:.8mm 0 0;">Playwright automation with human confirmation and a downloadable fallback packet.</p></div></div>
+          </div>
+          <div class="card" style="padding:3mm;margin-bottom:2.5mm;">
+            <div style="display:flex;gap:2.5mm;align-items:flex-start;"><div class="num-badge" style="min-width:6.5mm;">2</div><div><b class="small" style="color:var(--navy);">Buyer correspondence agent</b><p class="tiny" style="margin:.8mm 0 0;">Email/WhatsApp follow-ups, response classification, settlement options, tone control.</p></div></div>
+          </div>
+          <div class="card" style="padding:3mm;margin-bottom:3.5mm;">
+            <div style="display:flex;gap:2.5mm;align-items:flex-start;"><div class="num-badge" style="min-width:6.5mm;">3</div><div><b class="small" style="color:var(--navy);">CA multi-client workspace</b><p class="tiny" style="margin:.8mm 0 0;">Portfolio view, bulk actions and client-level recovery reports.</p></div></div>
+          </div>
+
+          <div class="label">After the event</div>
+          <div class="tiny" style="line-height:1.5;margin-bottom:3.5mm;">Tally/Zoho native integrations · TReDS and invoice financing · state Facilitation Council packs · Hindi, Punjabi and Marathi.</div>
+
+          <div class="callout amber" style="padding:2.8mm 3.2mm;">
+            <div class="kicker" style="color:#9A5A10;">What we will not build</div>
+            <div class="tiny">Legal representation · consumer debt · lending · arbitration strategy. <b>Scope is a feature.</b></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:4.5mm;">
+        <div class="label">The recovery desk · product surface</div>
+        <div class="wire">
+          <div class="wire-side">
+            <div class="wire-logo">Pay<span>Haq</span></div>
+            <div class="wire-nav">
+              <div class="on">Recovery desk</div>
+              <div>Cases</div>
+              <div>Evidence</div>
+              <div>Notices</div>
+              <div>Buyers</div>
+              <div>Reports</div>
+              <div style="margin-top:4mm;">Settings</div>
+              <div>Team</div>
+            </div>
+            <div style="margin-top:8mm;padding-top:3mm;border-top:1px solid rgba(255,255,255,.18);font-family:'SF Mono',Menlo,monospace;font-size:5.2px;color:rgba(255,255,255,.45);">Rakesh · Sharma Precision</div>
+          </div>
+          <div class="wire-main">
+            <div class="wire-top">
+              <div class="wire-title">Recovery desk</div>
+              <div class="wire-meta">9 active cases · ₹38.4L in play</div>
+            </div>
+            <div class="wire-cols">
+              <div class="wire-col">
+                <div class="ch"><span>Detected</span><span>4</span></div>
+                <div class="wire-card"><b>Bharat Autocomp</b><span><span class="amt">₹12.4L</span> · 96 days</span><span>Evidence 8/9</span></div>
+                <div class="wire-card"><b>Nova Packaging</b><span><span class="amt">₹5.6L</span> · 61 days</span><span>Evidence 7/9</span></div>
+                <div class="wire-card"><b>Precision Tools</b><span><span class="amt">₹4.2L</span> · 48 days</span><span>Evidence 9/9</span></div>
+              </div>
+              <div class="wire-col">
+                <div class="ch"><span>Evidence ready</span><span>2</span></div>
+                <div class="wire-card"><b>Metro Fabricators</b><span><span class="amt">₹8.1L</span> · 74 days</span><span>Evidence 9/9</span></div>
+                <div class="wire-card"><b>Anand Springs</b><span><span class="amt">₹3.9L</span> · 70 days</span><span>Evidence 9/9</span></div>
+              </div>
+              <div class="wire-col">
+                <div class="ch"><span>Notice sent</span><span>2</span></div>
+                <div class="wire-card"><b>Kirti Engineering</b><span><span class="amt">₹2.8L</span> · 88 days</span><span>Notice · 12 Nov</span></div>
+                <div class="wire-card"><b>Sai Components</b><span><span class="amt">₹1.4L</span> · 52 days</span><span>Notice · 14 Nov</span></div>
+              </div>
+              <div class="wire-col">
+                <div class="ch"><span>Filed</span><span>1</span></div>
+                <div class="wire-card"><b>Pune Auto Works</b><span><span class="amt">₹6.8L</span> · 120 days</span><span>Samadhaan · filed</span></div>
+              </div>
+              <div class="wire-col recovered">
+                <div class="ch"><span>Recovered</span><span>₹6.2L</span></div>
+                <div class="wire-card" style="border-left-color:var(--teal);"><b>Sharma Precision</b><span>Principal + interest</span><span>Cash received · 28 Oct</span></div>
+                <div class="wire-card" style="border-left-color:var(--teal);"><b>Bharat Autocomp</b><span>Settlement accepted</span><span>₹2.1L · 31 Oct</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:4.5mm;">
+        <div class="label">The 3-minute Round 2 demo</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);background:var(--navy);border-radius:1.8mm;padding:4mm;color:#fff;">
+          <div style="padding-right:4mm;border-right:1px solid rgba(255,255,255,.15);">
+            <div class="mono tiny" style="color:#8FD3D1;margin-bottom:1.4mm;">01</div>
+            <b style="font-size:9px;">Upload</b>
+            <p class="tiny" style="margin:1.2mm 0 0;color:rgba(255,255,255,.62);">Drop a 214-row ledger exported from Tally. No cleanup.</p>
+          </div>
+          <div style="padding:0 4mm;border-right:1px solid rgba(255,255,255,.15);">
+            <div class="mono tiny" style="color:#8FD3D1;margin-bottom:1.4mm;">02</div>
+            <b style="font-size:9px;">Review</b>
+            <p class="tiny" style="margin:1.2mm 0 0;color:rgba(255,255,255,.62);">See 9 overdue invoices surface, with evidence gaps and statutory interest.</p>
+          </div>
+          <div style="padding:0 4mm;border-right:1px solid rgba(255,255,255,.15);">
+            <div class="mono tiny" style="color:#8FD3D1;margin-bottom:1.4mm;">03</div>
+            <b style="font-size:9px;">Approve</b>
+            <p class="tiny" style="margin:1.2mm 0 0;color:rgba(255,255,255,.62);">Approve a cited notice and download the Samadhaan-ready claim packet.</p>
+          </div>
+          <div style="padding-left:4mm;">
+            <div class="mono tiny" style="color:#8FD3D1;margin-bottom:1.4mm;">04</div>
+            <b style="font-size:9px;">Recover</b>
+            <p class="tiny" style="margin:1.2mm 0 0;color:rgba(255,255,255,.62);">Track the response, the deadline and the cash on one dashboard.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="takeaway"><div class="k">The takeaway</div><div class="q">“The demo is the workflow, not a mock.”</div></div>
+    <div class="ftr"><span>Team Update · Shikhar Goel &amp; Ishpreet Singh</span><span>06 / 09</span></div>
+  </div>
+</section>
+
+<!-- ================= PAGE 7 — TECHNICAL PLAN ================= -->
+<section class="page" id="p7">
+  <div class="pad">
+    <div class="hdr">
+      <div class="brand">PAY<span>HAQ</span></div>
+      <div class="hdr-right">CodeNexus India 2026 · Round 1 · Agentic AI</div>
+    </div>
+    <div class="content">
+      <div class="sec-no">06 / Technical plan</div>
+      <h1>Reliable by design.</h1>
+      <p class="deck">The hard part is not the chat. It is proving the claim.</p>
+
+      <div style="border:1px solid var(--line);background:#fff;border-radius:1.8mm;padding:3mm;margin-bottom:4mm;">
+        <svg viewBox="0 0 760 268" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#8A96A3"/>
+            </marker>
+          </defs>
+          <!-- top row -->
+          <rect x="18" y="16" width="210" height="42" rx="4" fill="#F4F7F8" stroke="#D9E0E6"/>
+          <text x="30" y="35" font-size="10.5" font-weight="700" fill="#0B1F3A">Client</text>
+          <text x="30" y="49" font-size="8.5" fill="#5B6674">Next.js dashboard · document viewer · approval UI</text>
+
+          <rect x="272" y="16" width="190" height="42" rx="4" fill="#F4F7F8" stroke="#D9E0E6"/>
+          <text x="284" y="35" font-size="10.5" font-weight="700" fill="#0B1F3A">API</text>
+          <text x="284" y="49" font-size="8.5" fill="#5B6674">FastAPI · auth · webhooks · audit log</text>
+
+          <rect x="506" y="16" width="236" height="42" rx="4" fill="#FBF0DF" stroke="#EED9B8"/>
+          <text x="518" y="35" font-size="10.5" font-weight="700" fill="#0B1F3A">External</text>
+          <text x="518" y="49" font-size="8.5" fill="#5B6674">OpenAI GPT-4.1/4o · email · Samadhaan · Tally</text>
+
+          <line x1="228" y1="37" x2="270" y2="37" stroke="#8A96A3" stroke-width="1" marker-end="url(#arrow)"/>
+          <line x1="462" y1="37" x2="504" y2="37" stroke="#8A96A3" stroke-width="1" marker-end="url(#arrow)"/>
+
+          <!-- orchestrator -->
+          <rect x="18" y="88" width="444" height="92" rx="4" fill="#E8F3F2" stroke="#C6E2E0"/>
+          <text x="30" y="107" font-size="10.5" font-weight="700" fill="#0B1F3A">Agent orchestrator · LangGraph</text>
+          <text x="30" y="121" font-size="8.5" fill="#5B6674">Stateful, resumable workflow with human-in-the-loop nodes</text>
+
+          <rect x="30" y="134" width="94" height="32" rx="3" fill="#FFFFFF" stroke="#C6E2E0"/>
+          <text x="39" y="153" font-size="8" fill="#0B1F3A">Intake</text>
+          <rect x="132" y="134" width="94" height="32" rx="3" fill="#FFFFFF" stroke="#C6E2E0"/>
+          <text x="141" y="153" font-size="8" fill="#0B1F3A">Reconcile</text>
+          <rect x="234" y="134" width="94" height="32" rx="3" fill="#FFFFFF" stroke="#C6E2E0"/>
+          <text x="243" y="153" font-size="8" fill="#0B1F3A">Audit</text>
+          <rect x="336" y="134" width="112" height="32" rx="3" fill="#FFFFFF" stroke="#C6E2E0"/>
+          <text x="345" y="153" font-size="8" fill="#0B1F3A">Quantify · Draft</text>
+
+          <!-- tools -->
+          <rect x="506" y="88" width="236" height="92" rx="4" fill="#FFFFFF" stroke="#D9E0E6"/>
+          <text x="518" y="107" font-size="10.5" font-weight="700" fill="#0B1F3A">Tools</text>
+          <text x="518" y="123" font-size="8" fill="#5B6674">Ledger parser · OCR</text>
+          <text x="518" y="137" font-size="8" fill="#5B6674">Interest engine · legal RAG</text>
+          <text x="518" y="151" font-size="8" fill="#5B6674">Doc generator · portal automation</text>
+          <text x="518" y="165" font-size="8" fill="#5B6674">Email / WhatsApp</text>
+
+          <line x1="462" y1="118" x2="504" y2="118" stroke="#8A96A3" stroke-width="1" marker-end="url(#arrow)"/>
+          <line x1="504" y1="140" x2="464" y2="140" stroke="#8A96A3" stroke-width="1" marker-end="url(#arrow)"/>
+
+          <!-- human gate -->
+          <rect x="18" y="198" width="210" height="42" rx="4" fill="#FBF0DF" stroke="#EED9B8"/>
+          <text x="30" y="217" font-size="10.5" font-weight="700" fill="#0B1F3A">Human approval</text>
+          <text x="30" y="231" font-size="8.5" fill="#5B6674">Notice · filing · settlement</text>
+
+          <!-- data -->
+          <rect x="272" y="198" width="470" height="42" rx="4" fill="#F4F7F8" stroke="#D9E0E6"/>
+          <text x="284" y="217" font-size="10.5" font-weight="700" fill="#0B1F3A">Data</text>
+          <text x="284" y="231" font-size="8.5" fill="#5B6674">Postgres + pgvector · Redis · S3 · immutable audit log</text>
+
+          <line x1="240" y1="180" x2="118" y2="196" stroke="#8A96A3" stroke-width="1" marker-end="url(#arrow)"/>
+          <line x1="228" y1="180" x2="300" y2="196" stroke="#8A96A3" stroke-width="1" marker-end="url(#arrow)"/>
+        </svg>
+      </div>
+
+      <div class="two" style="grid-template-columns:1.08fr 1fr;">
+        <div>
+          <div class="label">Stack · and why</div>
+          <table>
+            <tr><th>Layer</th><th>Choice</th><th>Why</th></tr>
+            <tr><td>Frontend</td><td>Next.js · TypeScript · Tailwind · shadcn/ui</td><td>Fast dashboard, typed contracts, clean document viewer</td></tr>
+            <tr><td>Backend</td><td>FastAPI · Python 3.12</td><td>Ledger/document libraries, typed schemas, async jobs</td></tr>
+            <tr><td>Agent</td><td>LangGraph · OpenAI GPT-4.1/4o</td><td>Stateful, resumable workflow with human-in-the-loop nodes</td></tr>
+            <tr><td>Data</td><td>Postgres + pgvector · Redis · S3</td><td>One datastore for cases, evidence and legal retrieval</td></tr>
+            <tr><td>Documents</td><td>React-PDF / WeasyPrint</td><td>Versioned notice and claim templates</td></tr>
+            <tr><td>Observability</td><td>Langfuse · Sentry</td><td>Trace every agent step; catch failures before the demo</td></tr>
+          </table>
+        </div>
+
+        <div>
+          <div class="label">Reliability by design</div>
+          <div class="card" style="padding:3mm;margin-bottom:2.5mm;">
+            <b class="small" style="color:var(--navy);">Deterministic interest engine</b>
+            <p class="tiny" style="margin:.8mm 0 0;">Pure Python + Decimal. 3× RBI bank rate, monthly compounding. Unit tests against worked examples. No LLM arithmetic.</p>
+          </div>
+          <div class="card" style="padding:3mm;margin-bottom:2.5mm;">
+            <b class="small" style="color:var(--navy);">Legal RAG with citations</b>
+            <p class="tiny" style="margin:.8mm 0 0;">MSMED Act, Samadhaan guidelines, RBI notifications. Section-level metadata. “No citation, no claim.” Last-verified date on every rule.</p>
+          </div>
+          <div class="card" style="padding:3mm;margin-bottom:2.5mm;">
+            <b class="small" style="color:var(--navy);">Evidence graph</b>
+            <p class="tiny" style="margin:.8mm 0 0;">Invoice → PO → challan → e-way bill → bank credit. A missing link becomes an evidence gap, not a guess.</p>
+          </div>
+          <div class="callout amber" style="padding:2.8mm 3.2mm;">
+            <div class="kicker" style="color:#9A5A10;">Hardest problem</div>
+            <p style="margin:0;font-size:8.1px;line-height:1.45;">Messy ledgers and legal accuracy. Deterministic matching + confidence scores; the user resolves ambiguous matches; human approval at every irreversible step.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top:4mm;padding:3mm 4mm;">
+        <div class="kicker">Evaluation harness</div>
+        <p class="tiny" style="margin:0;line-height:1.5;"><b>50 synthetic ledgers with known ground truth.</b> Metrics: reconciliation accuracy, overdue recall, interest exactness, citation correctness, notice completeness, time-to-notice. Security: encryption at rest and in transit, role-based access, data minimisation, no training on user data.</p>
+      </div>
+
+      <div class="two-eq" style="margin-top:4mm;">
+        <div class="card" style="padding:3.5mm;">
+          <div class="kicker">Latency budget</div>
+          <table>
+            <tr><th>Step</th><th>Target</th></tr>
+            <tr><td>Ledger parse</td><td>&lt; 30 seconds</td></tr>
+            <tr><td>Reconcile + exceptions</td><td>&lt; 60 seconds</td></tr>
+            <tr><td>Evidence audit</td><td>&lt; 2 minutes</td></tr>
+            <tr><td>Draft notice + claim</td><td>&lt; 30 seconds</td></tr>
+            <tr><td>Human review</td><td>As long as the owner needs</td></tr>
+            <tr><td>Samadhaan filing · Round 3</td><td>&lt; 5 minutes, with confirmation</td></tr>
+          </table>
+        </div>
+        <div class="card teal" style="padding:3.5mm;">
+          <div class="kicker">Guardrails</div>
+          <ul class="checklist" style="margin-top:1mm;">
+            <li><b>No citation, no claim.</b> Every legal assertion points to a source.</li>
+            <li><b>No approval, no send.</b> The agent cannot email, file or settle alone.</li>
+            <li><b>No LLM math.</b> Interest is computed by a deterministic engine.</li>
+            <li><b>No training on user data.</b> Documents stay inside the tenant.</li>
+            <li><b>Every action is audited.</b> Who saw what, when, and what changed.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="ftr"><span>Team Update · Shikhar Goel &amp; Ishpreet Singh</span><span>07 / 09</span></div>
+  </div>
+</section>
+
+<!-- ================= PAGE 8 — PLAN & IMPACT ================= -->
+<section class="page" id="p8">
+  <div class="pad">
+    <div class="hdr">
+      <div class="brand">PAY<span>HAQ</span></div>
+      <div class="hdr-right">CodeNexus India 2026 · Round 1 · Agentic AI</div>
+    </div>
+    <div class="content">
+      <div class="sec-no">07 / Development plan &amp; impact</div>
+      <h1>A 72-hour MVP. A real path after.</h1>
+      <p class="deck">Scope we can finish scores higher than scope that sounds impressive.</p>
+
+      <div class="three" style="margin-bottom:4.5mm;">
+        <div class="card" style="border-top:2.4px solid var(--teal);padding:4mm;">
+          <div class="kicker">Round 1 · 2–3 Nov</div>
+          <h3 style="font-family:'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;margin:0 0 2mm;color:var(--navy);">The plan</h3>
+          <p class="tiny" style="margin:0 0 3mm;">User research, legal source pack, architecture, this PDF.</p>
+          <div class="label">Owner</div>
+          <div class="tiny">Both</div>
+        </div>
+        <div class="card" style="border-top:2.4px solid var(--teal);padding:4mm;">
+          <div class="kicker">Round 2 · 4–7 Nov</div>
+          <h3 style="font-family:'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;margin:0 0 2mm;color:var(--navy);">The build</h3>
+          <p class="tiny" style="margin:0 0 3mm;">Ledger ingestion, reconciliation, interest engine, evidence audit, notice/claim PDF, dashboard, approval + audit, mock filing.</p>
+          <div class="label">Owner</div>
+          <div class="tiny">Shikhar: agent/backend/legal<br>Ishpreet: frontend/docs/deploy<br>Both: integration/demo</div>
+        </div>
+        <div class="card" style="border-top:2.4px solid var(--amber);padding:4mm;">
+          <div class="kicker" style="color:#9A5A10;">Round 3 · 10–13 Nov</div>
+          <h3 style="font-family:'Avenir Next','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;margin:0 0 2mm;color:var(--navy);">The finish</h3>
+          <p class="tiny" style="margin:0 0 3mm;">Live Samadhaan filing, correspondence agent, CA workspace, evaluation, polish.</p>
+          <div class="label">Owner</div>
+          <div class="tiny">Shikhar: filing/correspondence<br>Ishpreet: workspace/UI<br>Both: final demo</div>
+        </div>
+      </div>
+
+      <div class="two" style="grid-template-columns:1.05fr 1fr;">
+        <div>
+          <div class="label">Risks and mitigations</div>
+          <table>
+            <tr><th>Risk</th><th>Mitigation</th></tr>
+            <tr><td>Legal accuracy</td><td>Section-cited RAG, deterministic rules, human review, legal advisor review before pilot</td></tr>
+            <tr><td>Messy ledgers</td><td>Deterministic matching + confidence scores; user resolves exceptions</td></tr>
+            <tr><td>Portal changes</td><td>Downloadable packet fallback; human-assisted filing; Playwright only with confirmation</td></tr>
+          </table>
+        </div>
+        <div>
+          <div class="label">Target impact</div>
+          <div class="two-eq" style="gap:3mm;">
+            <div><div class="stat" style="font-size:22px;">&lt;15 min</div><div class="stat-label">time to first notice</div></div>
+            <div><div class="stat" style="font-size:22px;">&gt;90%</div><div class="stat-label">evidence completeness before filing</div></div>
+            <div><div class="stat" style="font-size:22px;">6–10 hrs</div><div class="stat-label">saved per case</div></div>
+            <div><div class="stat" style="font-size:22px;">20</div><div class="stat-label">MSME pilot in one cluster</div></div>
+          </div>
+          <p class="tiny" style="margin:3mm 0 0;">Measure: notices sent, buyer responses, settlements, ₹ recovered, and user trust (SUS). Cash flow, not dashboards.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:4.5mm;">
+        <div class="label">After the hackathon</div>
+        <div class="three">
+          <div class="card teal" style="padding:3.2mm;">
+            <div class="kicker">0–3 months</div>
+            <p class="tiny" style="margin:0;">Pilot with 20 MSMEs through a cluster association. Legal advisor review. Case studies with recovery numbers.</p>
+          </div>
+          <div class="card teal" style="padding:3.2mm;">
+            <div class="kicker">3–6 months</div>
+            <p class="tiny" style="margin:0;">Tally/Zoho integrations. TReDS and invoice-financing partnerships. State-specific Facilitation Council packs.</p>
+          </div>
+          <div class="card teal" style="padding:3.2mm;">
+            <div class="kicker">6–12 months</div>
+            <p class="tiny" style="margin:0;">Local languages. CA seats and portfolio pricing. API for lenders and incubators.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:4.5mm;">
+        <div class="label">The 72-hour build sequence</div>
+        <div class="three">
+          <div class="card" style="padding:3.5mm;">
+            <div class="kicker">Day 1 · data + math</div>
+            <p class="tiny" style="margin:0 0 2mm;">Data model, CSV/XLSX ingestion, reconciliation, statutory interest engine, test fixtures.</p>
+            <div class="tiny muted"><b>Lead:</b> Shikhar · <b>Support:</b> Ishpreet</div>
+          </div>
+          <div class="card" style="padding:3.5mm;">
+            <div class="kicker">Day 2 · workflow</div>
+            <p class="tiny" style="margin:0 0 2mm;">Evidence audit, legal RAG, notice/claim PDF, dashboard, approval flow and audit log.</p>
+            <div class="tiny muted"><b>Lead:</b> Ishpreet · <b>Support:</b> Shikhar</div>
+          </div>
+          <div class="card" style="padding:3.5mm;">
+            <div class="kicker">Day 3 · demo</div>
+            <p class="tiny" style="margin:0 0 2mm;">Mock filing, deployment, 50-case evaluation, 3-minute demo script, updated PDF.</p>
+            <div class="tiny muted"><b>Lead:</b> Both</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout navy" style="margin-top:4.5mm;padding:3.5mm 4mm;">
+        <div class="kicker" style="color:#8FD3D1;">Why this team can ship it</div>
+        <p style="margin:0;font-size:9px;line-height:1.5;color:rgba(255,255,255,.82);">Two builders, complementary roles, a narrow wedge, and a 72-hour plan that ends with a deployed product — not a slide.</p>
+      </div>
+    </div>
+    <div class="takeaway"><div class="k">The takeaway</div><div class="q">“A narrow scope is a credible promise.”</div></div>
+    <div class="ftr"><span>Team Update · Shikhar Goel &amp; Ishpreet Singh</span><span>08 / 09</span></div>
+  </div>
+</section>
+
+<!-- ================= PAGE 9 — TEAM ================= -->
+<section class="page" id="p9">
+  <div class="pad">
+    <div class="hdr">
+      <div class="brand">PAY<span>HAQ</span></div>
+      <div class="hdr-right">CodeNexus India 2026 · Round 1 · Agentic AI</div>
+    </div>
+    <div class="content">
+      <div class="sec-no">08 / Team</div>
+      <h1>Team Update.</h1>
+      <p class="deck">Two builders, one problem, and a workflow we can demo end-to-end.</p>
+
+      <div class="two-eq" style="margin-bottom:4.5mm;">
+        <div class="profile">
+          <div class="profile-head">
+            <div class="avatar">SG</div>
+            <div>
+              <h3>Shikhar Goel</h3>
+              <div class="role">Product &amp; AI Lead</div>
+            </div>
+          </div>
+          <p>Owns the problem research, the agent's decision model and the evidence behind every claim. Built the legal retrieval and statutory interest logic for PayHaq.</p>
+          <div class="label">Focus</div>
+          <div class="tiny" style="line-height:1.6;">Product research · agent orchestration · legal RAG · statutory interest engine · evaluation</div>
+        </div>
+
+        <div class="profile">
+          <div class="profile-head">
+            <div class="avatar">IS</div>
+            <div>
+              <h3>Ishpreet Singh</h3>
+              <div class="role">Full-Stack &amp; Design Lead</div>
+            </div>
+          </div>
+          <p>Owns the product surface, the document pipeline and the demo experience. Built the Next.js dashboard, notice/claim templates and deployment.</p>
+          <div class="label">Focus</div>
+          <div class="tiny" style="line-height:1.6;">Next.js · TypeScript · UI/UX · document generation · deployment · demo</div>
+        </div>
+      </div>
+
+      <div class="cert-box" style="margin-bottom:4.5mm;">
+        <div class="label">Certificate lines · each member submits their own entry</div>
+        <div class="cert-line"><b>Shikhar Goel — Product &amp; AI Lead.</b> Led product research and built the agent orchestration, legal retrieval and statutory interest engine.</div>
+        <div class="cert-line"><b>Ishpreet Singh — Full-Stack &amp; Design Lead.</b> Built the Next.js dashboard, document pipeline and deployment, and designed the end-to-end user experience.</div>
+      </div>
+
+      <div class="two" style="grid-template-columns:1.1fr 1fr;">
+        <div>
+          <div class="label">Why we win</div>
+          <ul class="checklist">
+            <li><b>Specific legal wedge:</b> 45 days and 3× RBI interest, not a generic “AI for MSMEs.”</li>
+            <li><b>Agentic execution:</b> the agent files and follows up, with human approval at every irreversible step.</li>
+            <li><b>Feasible demo:</b> a real ledger, a real notice, a real claim packet in 72 hours.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="label">Institution</div>
+          <p class="small" style="margin-bottom:3mm;">Thapar Institute of Engineering and Technology, Patiala</p>
+          <div class="label">Team</div>
+          <p class="small" style="margin-bottom:0;">Update · 2 members · CodeNexus India 2026</p>
+        </div>
+      </div>
+
+      <div style="margin-top:6mm;">
+        <div class="two" style="grid-template-columns:1.35fr 1fr;">
+          <div>
+            <div class="label">Round 2 ownership · 4–7 Nov</div>
+            <table>
+              <tr><th>Workstream</th><th>Lead</th><th>Deliverable by 7 Nov</th></tr>
+              <tr><td>Ledger ingestion + reconciliation</td><td>Shikhar</td><td>CSV/XLSX + exception queue</td></tr>
+              <tr><td>Evidence audit + legal RAG</td><td>Shikhar</td><td>Cited notice + claim statement</td></tr>
+              <tr><td>Dashboard + document pipeline</td><td>Ishpreet</td><td>End-to-end UI</td></tr>
+              <tr><td>Deployment + demo</td><td>Ishpreet</td><td>Live link + 3-minute script</td></tr>
+              <tr><td>Integration + evaluation</td><td>Both</td><td>50-case test set + submission</td></tr>
+            </table>
+          </div>
+          <div>
+            <div class="label">How we work</div>
+            <ul class="checklist">
+              <li>Ship the workflow before the polish.</li>
+              <li>Every irreversible step has a human gate.</li>
+              <li>Demo the real ledger, not a mock.</li>
+              <li>Cut scope, not the evidence.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout teal" style="margin-top:5mm;padding:3mm 4mm;">
+        <div class="kicker">What we will show in Round 2</div>
+        <p class="tiny" style="margin:0;">A real ledger reconciled · evidence gaps surfaced · a cited notice and claim packet · the deployed dashboard.</p>
+      </div>
+
+      <div style="margin-top:6mm;border-top:1px solid var(--line);padding-top:4mm;">
+        <div class="quote" style="font-size:15px;max-width:140mm;">“The money is already owed. PayHaq goes and gets it.”</div>
+      </div>
+    </div>
+    <div class="ftr"><span>Team Update · Shikhar Goel &amp; Ishpreet Singh</span><span>09 / 09</span></div>
+  </div>
+</section>
+
+</body>
+</html>
